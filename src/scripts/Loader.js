@@ -1,29 +1,24 @@
 import { LoaderConfig } from "./LoaderConfig";
 import { Globals } from "./Globals";
+import { GLProgram } from "pixi.js";
 
 export class Loader {
-    /**
-     * 
-     * @param {PIXI.Application.loader} loader 
-     */
     constructor(loader) {
         this.loader = loader;
         this.resources = LoaderConfig;
     }
 
     preload() {
-        return new Promise(
-            resolve => {
-                 // this.loader.add("bg", bg);
-                for(let key in this.resources) {
-                    this.loader.add(key, this.resources[key]);
-                }
-                this.loader.load((loader, resources) => {
-                    Globals.resources = resources;
-                    resolve();
-                });
+        return new Promise(resolve => {
+            for (let key in this.resources) {
+                this.loader.add(key, this.resources[key]);
             }
-        )
-       
+    
+            this.loader.load((loader, resources) => {
+                Globals.resources = resources;
+                console.log(Globals);
+                resolve();
+            });
+        });
     }
 }

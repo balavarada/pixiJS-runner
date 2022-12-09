@@ -5,22 +5,24 @@ import { MainScene } from "./MainScene";
 
 export class App {
     run() {
+        // create canvas
         this.app = new PIXI.Application({resizeTo: window});
-        //create canvas
         document.body.appendChild(this.app.view);
 
-        //load sprites
+        // load sprites
         this.loader = new Loader(this.app.loader);
         this.loader.preload().then(() => this.start());
     }
 
     start() {
-        // console.log("The game started !!");
+        console.log(this.app.ticker.add);
+       
         this.app.ticker.add(() => {
             TWEEN.update();
         });
-        
+
         this.scene = new MainScene();
         this.app.stage.addChild(this.scene.container);
+
     }
 }
