@@ -8,7 +8,7 @@ export class Platform {
         this.cols = cols;
         this.x = x;
         this.createContainer(x);
-        this.createTile();
+        this.createTiles();
     }
 
     createContainer(x) {

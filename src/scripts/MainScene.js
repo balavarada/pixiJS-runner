@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import { Globals } from "./Globals";
-import { Platforms } from "./Platforms";
 import { Background } from "./Background";
+import { Platforms } from "./Platforms";
 
 export class MainScene {
     constructor() {
@@ -20,8 +20,8 @@ export class MainScene {
     }
 
     createPlatforms() {
-        this.platforms = new Platforms();
-        this.container.addChild(this.platforms.container);
+        this.platfroms = new Platforms();
+        this.container.addChild(this.platfroms.container);
     }
 
     update(dt) {
