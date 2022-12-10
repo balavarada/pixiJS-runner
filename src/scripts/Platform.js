@@ -28,7 +28,7 @@ export class Platform {
 
     createTile(row, col) {
         const texture =  row === 0 ? "platform" : "tile";
-        const tile =  new PIXI.Sprite(Globals.resources["tile"].texture);
+        const tile =  new PIXI.Sprite(Globals.resources[texture].texture);
         this.container.addChild(tile);
         tile.x = col * tile.width;
         tile.y = row * tile.height;
