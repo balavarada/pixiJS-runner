@@ -3,6 +3,7 @@ import { Globals } from "./Globals";
 import { Background } from "./Background";
 import { Platforms } from "./Platforms";
 import { Hero } from "./Hero";
+import { LabelScore } from "./LabelScore";
 
 export class MainScene {
     constructor() {
@@ -14,6 +15,7 @@ export class MainScene {
         this.createBackground();
         this.createPlatforms();
         this.createHero();
+        this.createUI();
     }
 
     createBackground() {
@@ -33,6 +35,14 @@ export class MainScene {
         this.container.on("pointerdown", () => {
             this.hero.startJump();
         })
+    }
+
+    createUI() {
+        this.labelScore = new LabelScore();
+        this.container.addChild(this.labelScore);
+        this.hero.sprite.on("score", () => {
+            this.labelScore.renderScore(this.hero.score);
+        });
     }
 
     update(dt) {
