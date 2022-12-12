@@ -34,7 +34,11 @@ export class MainScene {
         this.container.interactive = true;
         this.container.on("pointerdown", () => {
             this.hero.startJump();
-        })
+        });
+
+        this.hero.sprite.once("die", () => {
+            Globals.scene.start(new FinalScene());
+        });
     }
 
     createUI() {

@@ -70,7 +70,7 @@ export class Hero {
         }
 
         if (this.sprite.y > window.innerHeight) {
-            this.sprite.emit("die");
+            this.sprite.emit("die"); // Game over state;
         }
     }
 }
