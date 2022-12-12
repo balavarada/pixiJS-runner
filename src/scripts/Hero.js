@@ -56,7 +56,7 @@ export class Hero {
         this.platform = platform;
         this.dy = 0;
         this.jumpIndex = 0;
-        this.sprite.y = platform.top - this.sprite.height;
+        this.sprite.y = platform.top - this.sprite.height; //to keep on top of platform
     }
 
     moveByPlatform(platform) {

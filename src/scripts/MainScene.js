@@ -33,6 +33,7 @@ export class MainScene {
 
     update(dt) {
         this.bg.update(dt);
+        this.platfroms.checkCollisions(this.hero);
         this.platfroms.update(dt);
         this.hero.update(dt);
     }

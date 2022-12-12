@@ -56,4 +56,10 @@ export class Platforms {
             platform.move();
         });
     }
+
+    checkCollisions(hero) {
+        this.platforms.forEach(platform => {
+            platform.checkCollisions(hero);
+        });
+    }
 }

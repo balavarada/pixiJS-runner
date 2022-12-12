@@ -19,6 +19,10 @@ export class Platform {
         return this.container.x;
     }
 
+    get nextleft() {
+        return this.left + this.dx;
+    }
+
     get right() {
         return this.left + this.width;
     }
@@ -60,5 +64,33 @@ export class Platform {
         if(this.right < 0 ) {
             this.container.emit("hidden");
         }
+    }
+
+    checkCollisions(hero) {
+        if(this.isCollideTop(hero)) {
+            hero.stayOnPlatform(this); 
+        } else {
+            if(hero.platform == this) {
+                hero.platform = null;
+            }
+
+            if (this.isCollideLeft(hero)) {
+                hero.moveByPlatform(this);
+            }
+        }
+    }
+
+    isCollideTop(hero) {
+        return hero.right >= this.left &&
+            hero.left <= this.right &&
+            hero.bottom <= this.top &&
+            hero.nextbottom >= this.top;
+    }
+
+    isCollideLeft(hero) {
+        return hero.bottom >= this.top &&
+            hero.top <= this.bottom &&
+            hero.right <= this.left && 
+            hero.right >= this.nextleft;
     }
 }
