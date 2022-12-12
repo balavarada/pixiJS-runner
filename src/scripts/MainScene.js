@@ -29,6 +29,10 @@ export class MainScene {
     createHero() {
         this.hero = new Hero();
         this.container.addChild(this.hero.sprite);
+        this.container.interactive = true;
+        this.container.on("pointerdown", () => {
+            this.hero.startJump();
+        })
     }
 
     update(dt) {
