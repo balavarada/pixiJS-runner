@@ -34,5 +34,6 @@ export class MainScene {
     update(dt) {
         this.bg.update(dt);
         this.platfroms.update(dt);
+        this.hero.update(dt);
     }
 }
