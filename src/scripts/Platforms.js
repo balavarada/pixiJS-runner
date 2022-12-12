@@ -31,7 +31,7 @@ export class Platforms {
         let data = {rows:0, cols:0, x:0};
         const offset = this.range.offset.min + Math.round((Math.random() * (this.range.offset.max - this.range.offset.min)));
         data.x = this.current.right + offset;
-        data.row    = this.range.rows.min + Math.round((Math.random() * (this.range.rows.max - this.range.rows.min)));
+        data.rows    = this.range.rows.min + Math.round((Math.random() * (this.range.rows.max - this.range.rows.min)));
         data.cols   = this.range.cols.min + Math.round((Math.random() * (this.range.cols.max - this.range.cols.min)));
         return data;
     }
@@ -41,11 +41,19 @@ export class Platforms {
         this.container.addChild(platform.container);
         this.platforms.push(platform);
         this.current = platform;
+
+        platform.container.once("hidden", ()=> {
+            this.platforms = this.platforms.filter(item => item !== platform);
+            platform.container.destroy(); // freeup memory once hidden
+        })
     }
 
     update(dt) {
         if(this.current.right < window.innerWidth) {
             this.createPlatform(this.randomData);
         }
+        this.platforms.forEach(platform => {
+            platform.move();
+        });
     }
 }

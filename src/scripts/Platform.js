@@ -4,6 +4,7 @@ import { Globals } from "./Globals";
 const TileSize = 64; // size of tile sprite image
 export class Platform {
     constructor(rows, cols, x) {
+        this.dx = -5; // platform movement pixel - speed == more values
         this.rows = rows;
         this.cols = cols;
         this.width =  cols * TileSize;
@@ -51,5 +52,13 @@ export class Platform {
         this.container.addChild(tile);
         tile.x = col * tile.width;
         tile.y = row * tile.height;
+    }
+
+    move() {
+        this.container.x += this.dx;
+
+        if(this.right < 0 ) {
+            this.container.emit("hidden");
+        }
     }
 }
