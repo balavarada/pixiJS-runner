@@ -1,9 +1,14 @@
 import * as PIXI from "pixi.js";
 import { Globals } from "./Globals";
+import { Diamond } from "./Diamonds";
 
 const TileSize = 64; // size of tile sprite image
 export class Platform {
     constructor(rows, cols, x) {
+        this.diamonds = [];
+        this.diamondsOffsetMin = 100;
+        this.diamondsOffsetMax = 200;
+        
         this.dx = -5; // platform movement pixel - speed == more values
         this.rows = rows;
         this.cols = cols;
@@ -13,6 +18,7 @@ export class Platform {
 
         this.createContainer(x);
         this.createTiles();
+        this.createDiamonds();
     }
 
     get left() {
@@ -33,6 +39,17 @@ export class Platform {
 
     get bottom() {
         return this.top + this.height;
+    }
+
+    createDiamonds() {
+        const y = this.diamondsOffsetMin + Math.random() * (this.diamondsOffsetMax - this.diamondsOffsetMin);
+        for (let i = 0; i < this.cols; i++) {
+            if (Math.random() < 0.4) {
+                const diamond = new Diamond(64 * i, -y);
+                this.container.addChild(diamond.sprite);
+                this.diamonds.push(diamond);
+            }
+        }
     }
 
     createContainer(x) {
